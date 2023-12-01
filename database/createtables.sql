@@ -17,7 +17,7 @@ CREATE TABLE Usuario
 
 CREATE TABLE Atividade_Fisica
 (
-  Tempo INT NOT NULL,
+  Tempo VARCHAR NOT NULL,
   Tipo VARCHAR NOT NULL,
   Objetivo VARCHAR NOT NULL,
   AtividadeId INT NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE Atividade_Fisica
 
 CREATE TABLE Dieta
 (
-  Meta_Calorica INT NOT NULL,
+  Meta_Calorica FLOAT NOT NULL,
   Quantidade_de_refeicoes INT NOT NULL,
   Intervalo_entre_refeicoes INT NOT NULL,
   Objetivo VARCHAR NOT NULL,
@@ -41,9 +41,9 @@ CREATE TABLE Dieta
 CREATE TABLE Medicacao
 (
   Nome VARCHAR NOT NULL,
-  Dosagem VARCHAR NOT NULL,
+  Dosagem INT NOT NULL,
   Tipo VARCHAR NOT NULL,
-  Intervalo_ INT NOT NULL,
+  Intervalo_ VARCHAR NOT NULL,
   MedicacaoId INT NOT NULL,
   CpfUsuario VARCHAR NOT NULL,
   PRIMARY KEY (MedicacaoId),
@@ -112,7 +112,7 @@ CREATE TABLE Medicacao_Efeitos_Colaterais_
 
 CREATE TABLE Registro_Medico_Possiveis_Doencas_
 (
-  Possiveis_Doencas_ NUMERIC NOT NULL,
+  Possiveis_Doencas_ VARCHAR NOT NULL,
   RegistroId INT NOT NULL,
   PRIMARY KEY (RegistroId),
   FOREIGN KEY (RegistroId) REFERENCES Registro_Medico(RegistroId)
