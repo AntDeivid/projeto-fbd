@@ -5,7 +5,7 @@ CREATE TABLE Usuario
   Mes INT NOT NULL,
   Ano INT NOT NULL,
   Idade INT NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   Numero INT NOT NULL,
   Endereco VARCHAR NOT NULL,
   Tipo_sanguineo VARCHAR NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Atividade_Fisica
   Tipo VARCHAR NOT NULL,
   Objetivo VARCHAR NOT NULL,
   AtividadeId INT NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   PRIMARY KEY (AtividadeId),
   FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
 );
@@ -33,7 +33,7 @@ CREATE TABLE Dieta
   Intervalo_entre_refeicoes INT NOT NULL,
   Objetivo VARCHAR NOT NULL,
   DietaId INT NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   PRIMARY KEY (DietaId),
   FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
 );
@@ -45,7 +45,7 @@ CREATE TABLE Medicacao
   Tipo VARCHAR NOT NULL,
   Intervalo_ INT NOT NULL,
   MedicacaoId INT NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   PRIMARY KEY (MedicacaoId),
   FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
 );
@@ -53,7 +53,7 @@ CREATE TABLE Medicacao
 CREATE TABLE Registro_Medico
 (
   RegistroId INT NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   AtividadeId INT NOT NULL,
   MedicacaoId INT NOT NULL,
   DietaId INT NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE Exame
   Nome VARCHAR NOT NULL,
   ExameId INT NOT NULL,
   Finalidade VARCHAR NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   PRIMARY KEY (ExameId),
   FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
 );
@@ -81,7 +81,7 @@ CREATE TABLE Exame
 CREATE TABLE Usuario_Parentesco
 (
   Parentesco VARCHAR NOT NULL,
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   PRIMARY KEY (CpfUsuario),
   FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
 );
@@ -120,7 +120,7 @@ CREATE TABLE Registro_Medico_Possiveis_Doencas_
 
 CREATE TABLE Usuario_Reponsavel
 (
-  CpfUsuario INT NOT NULL,
+  CpfUsuario VARCHAR NOT NULL,
   RegistroId INT NOT NULL,
   PRIMARY KEY (CpfUsuario),
   FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario),
