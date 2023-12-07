@@ -1,128 +1,128 @@
 CREATE TABLE Usuario
 (
-  Nome VARCHAR NOT NULL,
-  Dia INT NOT NULL,
-  Mes INT NOT NULL,
-  Ano INT NOT NULL,
-  Idade INT NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
-  Numero INT NOT NULL,
-  Endereco VARCHAR NOT NULL,
-  Tipo_sanguineo VARCHAR NOT NULL,
-  Historico_medico VARCHAR NOT NULL,
-  Peso FLOAT NOT NULL,
+  Nome VARCHAR ,
+  Dia INT ,
+  Mes INT ,
+  Ano INT ,
+  Idade INT ,
+  CpfUsuario VARCHAR ,
+  Numero INT ,
+  Endereco VARCHAR ,
+  Tipo_sanguineo VARCHAR ,
+  Historico_medico VARCHAR ,
+  Peso FLOAT ,
   PRIMARY KEY (CpfUsuario),
   UNIQUE (Numero)
 );
 
 CREATE TABLE Atividade_Fisica
 (
-  Tempo VARCHAR NOT NULL,
-  Tipo VARCHAR NOT NULL,
-  Objetivo VARCHAR NOT NULL,
-  AtividadeId INT NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
+  Tempo VARCHAR ,
+  Tipo VARCHAR ,
+  Objetivo VARCHAR ,
+  AtividadeId INT ,
+  CpfUsuario VARCHAR ,
   PRIMARY KEY (AtividadeId),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Dieta
 (
-  Meta_Calorica FLOAT NOT NULL,
-  Quantidade_de_refeicoes INT NOT NULL,
-  Intervalo_entre_refeicoes INT NOT NULL,
-  Objetivo VARCHAR NOT NULL,
-  DietaId INT NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
+  Meta_Calorica FLOAT ,
+  Quantidade_de_refeicoes INT ,
+  Intervalo_entre_refeicoes INT ,
+  Objetivo VARCHAR ,
+  DietaId INT ,
+  CpfUsuario VARCHAR ,
   PRIMARY KEY (DietaId),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Medicacao
 (
-  Nome VARCHAR NOT NULL,
-  Dosagem INT NOT NULL,
-  Tipo VARCHAR NOT NULL,
-  Intervalo_ VARCHAR NOT NULL,
-  MedicacaoId INT NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
+  Nome VARCHAR ,
+  Dosagem INT ,
+  Tipo VARCHAR ,
+  Intervalo_ VARCHAR ,
+  MedicacaoId INT ,
+  CpfUsuario VARCHAR ,
   PRIMARY KEY (MedicacaoId),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Registro_Medico
 (
-  RegistroId INT NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
-  AtividadeId INT NOT NULL,
-  MedicacaoId INT NOT NULL,
-  DietaId INT NOT NULL,
+  RegistroId INT ,
+  CpfUsuario VARCHAR ,
+  AtividadeId INT ,
+  MedicacaoId INT ,
+  DietaId INT ,
   PRIMARY KEY (RegistroId),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario),
-  FOREIGN KEY (AtividadeId) REFERENCES Atividade_Fisica(AtividadeId),
-  FOREIGN KEY (MedicacaoId) REFERENCES Medicacao(MedicacaoId),
-  FOREIGN KEY (DietaId) REFERENCES Dieta(DietaId)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE,
+  FOREIGN KEY (AtividadeId) REFERENCES Atividade_Fisica(AtividadeId) ON DELETE CASCADE,
+  FOREIGN KEY (MedicacaoId) REFERENCES Medicacao(MedicacaoId) ON DELETE CASCADE,
+  FOREIGN KEY (DietaId) REFERENCES Dieta(DietaId) ON DELETE CASCADE
 );
 
 CREATE TABLE Exame
 (
-  Tipo VARCHAR NOT NULL,
-  Dia INT NOT NULL,
-  Mes INT NOT NULL,
-  Ano INT NOT NULL,
-  Nome VARCHAR NOT NULL,
-  ExameId INT NOT NULL,
-  Finalidade VARCHAR NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
+  Tipo VARCHAR ,
+  Dia INT ,
+  Mes INT ,
+  Ano INT ,
+  Nome VARCHAR ,
+  ExameId INT ,
+  Finalidade VARCHAR ,
+  CpfUsuario VARCHAR ,
   PRIMARY KEY (ExameId),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Usuario_Parentesco
 (
-  Parentesco VARCHAR NOT NULL,
-  CpfUsuario VARCHAR NOT NULL,
+  Parentesco VARCHAR ,
+  CpfUsuario VARCHAR ,
   PRIMARY KEY (CpfUsuario),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Dieta_Alimentos
 (
-  Alimentos VARCHAR NOT NULL,
-  DietaId INT NOT NULL,
+  Alimentos VARCHAR ,
+  DietaId INT ,
   PRIMARY KEY (DietaId),
-  FOREIGN KEY (DietaId) REFERENCES Dieta(DietaId)
+  FOREIGN KEY (DietaId) REFERENCES Dieta(DietaId) ON DELETE CASCADE
 );
 
 CREATE TABLE Medicacao_Contraindicacao
 (
-  Contraindicacao VARCHAR NOT NULL,
-  MedicacaoId INT NOT NULL,
+  Contraindicacao VARCHAR ,
+  MedicacaoId INT ,
   PRIMARY KEY (MedicacaoId),
-  FOREIGN KEY (MedicacaoId) REFERENCES Medicacao(MedicacaoId)
+  FOREIGN KEY (MedicacaoId) REFERENCES Medicacao(MedicacaoId) ON DELETE CASCADE
 );
 
 CREATE TABLE Medicacao_Efeitos_Colaterais_
 (
-  Efeitos_Colaterais_ VARCHAR NOT NULL,
-  MedicacaoId INT NOT NULL,
+  Efeitos_Colaterais_ VARCHAR ,
+  MedicacaoId INT ,
   PRIMARY KEY (MedicacaoId),
-  FOREIGN KEY (MedicacaoId) REFERENCES Medicacao(MedicacaoId)
+  FOREIGN KEY (MedicacaoId) REFERENCES Medicacao(MedicacaoId) ON DELETE CASCADE
 );
 
 CREATE TABLE Registro_Medico_Possiveis_Doencas_
 (
-  Possiveis_Doencas_ VARCHAR NOT NULL,
-  RegistroId INT NOT NULL,
+  Possiveis_Doencas_ VARCHAR ,
+  RegistroId INT ,
   PRIMARY KEY (RegistroId),
-  FOREIGN KEY (RegistroId) REFERENCES Registro_Medico(RegistroId)
+  FOREIGN KEY (RegistroId) REFERENCES Registro_Medico(RegistroId) ON DELETE CASCADE
 );
 
 CREATE TABLE Usuario_Reponsavel
 (
-  CpfUsuario VARCHAR NOT NULL,
-  RegistroId INT NOT NULL,
+  CpfUsuario VARCHAR ,
+  RegistroId INT ,
   PRIMARY KEY (CpfUsuario),
-  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario),
-  FOREIGN KEY (RegistroId) REFERENCES Registro_Medico(RegistroId)
+  FOREIGN KEY (CpfUsuario) REFERENCES Usuario(CpfUsuario) ON DELETE CASCADE,
+  FOREIGN KEY (RegistroId) REFERENCES Registro_Medico(RegistroId) ON DELETE CASCADE
 );
